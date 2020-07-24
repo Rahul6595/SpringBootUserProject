@@ -1,6 +1,5 @@
 package com.pas.testuser.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +58,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/getAllUserIdGreaterThan/{id}")
-	private Optional<List<User>> getAllUserIdGreaterThan(@PathVariable ("id") int id){
-		return Optional.ofNullable(userServices.getAllUsersGreaterThan(id));
+	private List<User> getAllUserIdGreaterThan(@PathVariable ("id") int id){
+		return userServices.getAllUsersGreaterThan(id);
 	}
 }

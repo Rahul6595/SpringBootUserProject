@@ -67,8 +67,8 @@ public class UserServicesImpl implements UserServices {
 	public List<User> getAllUsersGreaterThan(int id) {
 		// TODO Auto-generated method stub
 		List<User> users=new ArrayList<User>();
-		userrepo.findByIdGreaterThan(id);
-		return null;
+		users=userrepo.findByIdGreaterThan(id);
+		return users;
 	}
 	
 }
