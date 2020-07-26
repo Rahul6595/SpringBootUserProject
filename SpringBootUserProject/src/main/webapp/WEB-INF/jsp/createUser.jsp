@@ -9,10 +9,10 @@
 <body bgcolor="lightblue">
 <form action="insertUser" method="post">
 <table border="1">
-<tr>
+<!-- <tr>
 <td>Id:</td>
-<td><input type="text" name="id"></td>
-</tr>
+<td><input type="hidden" name="id" ></td>
+</tr> -->
 <tr>
 <td>User Name:</td>
 <td><input type="text" name="username"></td>

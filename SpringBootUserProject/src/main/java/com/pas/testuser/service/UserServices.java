@@ -22,4 +22,6 @@ public interface UserServices {
 	public void updateUser(User user);
 	
 	public List<User> getAllUsersGreaterThan(int id);
+
+	public List<User> getAllUsersSortedById();
 }

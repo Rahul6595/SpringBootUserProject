@@ -27,5 +27,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	List<User> findAllByOrderByDepartment();
 	
 	List<User> findByIdGreaterThan(int id);
+	List<User> findAllByOrderById();
 	
 }

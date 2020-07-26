@@ -1,11 +1,17 @@
 package com.pas.testuser.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pas.testuser.model.User;
@@ -18,14 +24,42 @@ public class UserController {
 	UserServices userServices;
 	
 	@RequestMapping("/showCreate")
-	public String showCreate() {
+	public String showCreate(Model model) {
+		/* return "createUser"; */
+		User user= new User();
+		model.addAttribute(user);
 		return "createUser";
 	}
 	
 	@RequestMapping("/insertUser")
 	public String SaveUser(@ModelAttribute ("user") User user) {
 		userServices.saveUser(user);
-		return "createUser";
+		return "redirect:/";
 	}
 	
+	@RequestMapping("/")
+	public String viewHomePage(Model model) {
+		List<User> listusers=userServices.getAllUsersSortedById();
+		model.addAttribute("listusers", listusers);
+		return "index";
+	}
+	
+	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
+	public String deleteUser(@PathVariable int id) {
+		userServices.deleteUser(id);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/edituser/{id}")
+	public String editUser(@PathVariable int id, Model model) {
+		User user=userServices.GetUserDetails(id);
+		model.addAttribute("command",user);
+		return "userEditForm";
+	}
+	
+	@RequestMapping(value = "/edituser/editSave", method = RequestMethod.POST)
+	public String updateUser(@ModelAttribute ("user") User user) {
+		userServices.saveUser(user);
+		return "redirect:/";
+	}
 }

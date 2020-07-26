@@ -61,4 +61,5 @@ public class UserRestController {
 	private List<User> getAllUserIdGreaterThan(@PathVariable ("id") int id){
 		return userServices.getAllUsersGreaterThan(id);
 	}
+	
 }

@@ -70,5 +70,13 @@ public class UserServicesImpl implements UserServices {
 		users=userrepo.findByIdGreaterThan(id);
 		return users;
 	}
+
+	@Override
+	public List<User> getAllUsersSortedById() {
+		// TODO Auto-generated method stub
+		List<User> users=new ArrayList<User>();
+		userrepo.findAllByOrderById().forEach(users1->users.add(users1));;
+		return users;
+	}
 	
 }
