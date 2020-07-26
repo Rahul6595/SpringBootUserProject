@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.pas.testuser.model.User;
@@ -17,6 +19,7 @@ public class UserServicesImpl implements UserServices {
 	UserRepository userrepo;
 	
 	@Override
+	@CacheEvict(value = "SortedUsers",allEntries = true)
 	public void saveUser(User user) {
 		// TODO Auto-generated method stub
 		userrepo.save(user);
@@ -52,18 +55,21 @@ public class UserServicesImpl implements UserServices {
 	}
 
 	@Override
+	@CacheEvict(value = "SortedUsers",allEntries = true)
 	public void deleteUser(int id) {
 		// TODO Auto-generated method stub
 		userrepo.deleteById(id);
 	}
 
 	@Override
+	@CacheEvict(value = "SortedUsers",allEntries = true)
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		userrepo.save(user);
 	}
 
 	@Override
+	@Cacheable(value = "GreaterUsers")
 	public List<User> getAllUsersGreaterThan(int id) {
 		// TODO Auto-generated method stub
 		List<User> users=new ArrayList<User>();
@@ -72,6 +78,7 @@ public class UserServicesImpl implements UserServices {
 	}
 
 	@Override
+	@Cacheable(value = "SortedUsers")
 	public List<User> getAllUsersSortedById() {
 		// TODO Auto-generated method stub
 		List<User> users=new ArrayList<User>();

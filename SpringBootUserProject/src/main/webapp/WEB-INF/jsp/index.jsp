@@ -9,6 +9,7 @@
 <title>User Home Page</title>
 </head>
 <body>
+${msg}
 <h1>Users List</h1>
 <a href="/showCreate">Create New User</a>
 <br><br>
